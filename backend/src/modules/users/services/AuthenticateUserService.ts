@@ -11,7 +11,7 @@ import IUsersRepository from '../repositories/IUsersRepository';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 
 interface Request {
-  email: string;
+  login: string;
   password: string;
 }
 
@@ -30,11 +30,11 @@ export default class AuthenticateUserService {
     private hashProvider: IHashProvider,
   ) {}
 
-  public async execute({ email, password }: Request): Promise<Response> {
-    const user = await this.usersRepository.findByEmail(email);
+  public async execute({ login, password }: Request): Promise<Response> {
+    const user = await this.usersRepository.findByLogin(login);
 
     if (!user) {
-      throw new AppError('Incorrect email/password combination.', 401);
+      throw new AppError('Incorrect login/password combination.', 401);
     }
 
     // user.password - crypted password
@@ -45,7 +45,7 @@ export default class AuthenticateUserService {
     );
 
     if (!passwordMatched) {
-      throw new AppError('Incorrect email/password combination.', 401);
+      throw new AppError('Incorrect login/password combination.', 401);
     }
 
     const { secret, expiresIn } = authConfig.jwt;

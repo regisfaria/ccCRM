@@ -9,6 +9,7 @@ import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 interface Request {
   name: string;
   email: string;
+  login: string;
   password: string;
 }
 
@@ -22,11 +23,22 @@ export default class CreateUserService {
     private hashProvider: IHashProvider,
   ) {}
 
-  public async execute({ name, email, password }: Request): Promise<User> {
-    const checkUserExists = await this.usersRepository.findByEmail(email);
+  public async execute({
+    name,
+    email,
+    login,
+    password,
+  }: Request): Promise<User> {
+    const emailExists = await this.usersRepository.findByEmail(email);
 
-    if (checkUserExists) {
+    if (emailExists) {
       throw new AppError('Email address already in use');
+    }
+
+    const loginExists = await this.usersRepository.findByLogin(login);
+
+    if (loginExists) {
+      throw new AppError('Login already in use');
     }
 
     const hashedPassword = await this.hashProvider.generateHash(password);
@@ -34,6 +46,7 @@ export default class CreateUserService {
     const user = await this.usersRepository.create({
       name,
       email,
+      login,
       password: hashedPassword,
     });
 

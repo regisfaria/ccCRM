@@ -25,11 +25,12 @@ describe('AuthenticateUser', () => {
     const user = await createUser.execute({
       name: 'John Doe',
       email: 'johndoe@example.com',
+      login: 'johndoe',
       password: 'somepass',
     });
 
     const response = await authenticateUser.execute({
-      email: 'johndoe@example.com',
+      login: 'johndoe',
       password: 'somepass',
     });
 
@@ -37,7 +38,7 @@ describe('AuthenticateUser', () => {
     expect(response.user).toEqual(user);
   });
 
-  it('should not be able to authenticate an user with wrong email', async () => {
+  it('should not be able to authenticate an user with wrong login', async () => {
     const fakeUsersRepository = new FakeUsersRepository();
     const fakeHashProvider = new FakeHashProvider();
 
@@ -53,12 +54,13 @@ describe('AuthenticateUser', () => {
     await createUser.execute({
       name: 'John Doe',
       email: 'johndoe@example.com',
+      login: 'johndoe',
       password: 'somepass',
     });
 
     expect(
       authenticateUser.execute({
-        email: 'wrongemail@example.com',
+        login: 'wronglogin',
         password: 'somepass',
       }),
     ).rejects.toBeInstanceOf(AppError);
@@ -80,12 +82,13 @@ describe('AuthenticateUser', () => {
     await createUser.execute({
       name: 'John Doe',
       email: 'johndoe@example.com',
+      login: 'johndoe',
       password: 'somepass',
     });
 
     expect(
       authenticateUser.execute({
-        email: 'johndoe@example.com',
+        login: 'johndoe',
         password: 'wrongpass',
       }),
     ).rejects.toBeInstanceOf(AppError);

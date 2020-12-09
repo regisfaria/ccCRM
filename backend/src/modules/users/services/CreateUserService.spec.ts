@@ -20,6 +20,7 @@ describe('CreateUser', () => {
     const user = await createUser.execute({
       name: 'John Doe',
       email: 'johndoe@example.com',
+      login: 'johndoe',
       password: 'somepass',
     });
 
@@ -38,14 +39,41 @@ describe('CreateUser', () => {
     await createUser.execute({
       name: 'John Doe',
       email: 'johndoe@example.com',
+      login: 'johndoe',
       password: 'somepass',
     });
 
-    // rejects tells the test to expect a rejected promise
     expect(
       createUser.execute({
-        name: 'John Doe',
+        name: 'Another John Doe',
         email: 'johndoe@example.com',
+        login: 'anotherJohnDoe',
+        password: 'somepass',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should not be able to create a new user with an existing login', async () => {
+    const fakeUsersRepository = new FakeUsersRepository();
+    const fakeHashProvider = new FakeHashProvider();
+
+    const createUser = new CreateUserService(
+      fakeUsersRepository,
+      fakeHashProvider,
+    );
+
+    await createUser.execute({
+      name: 'John Doe',
+      email: 'johndoe@example.com',
+      login: 'johndoe',
+      password: 'somepass',
+    });
+
+    expect(
+      createUser.execute({
+        name: 'Another John Doe',
+        email: 'anotherjohndoe@example.com',
+        login: 'johndoe',
         password: 'somepass',
       }),
     ).rejects.toBeInstanceOf(AppError);
