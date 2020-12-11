@@ -20,6 +20,10 @@ export default class FakeLeadsRepository implements ILeadsRepository {
     return foundLead;
   }
 
+  public async findAll(): Promise<Lead[]> {
+    return this.leads;
+  }
+
   public async create(leadData: ICreateLeadDTO): Promise<Lead> {
     const lead = new Lead();
 

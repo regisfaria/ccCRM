@@ -35,4 +35,10 @@ export default class LeadsRepository implements ILeadsRepository {
   public async save(lead: Lead): Promise<Lead> {
     return this.ormRepository.save(lead);
   }
+
+  public async findAll(): Promise<Lead[]> {
+    const leads = await this.ormRepository.find();
+
+    return leads;
+  }
 }

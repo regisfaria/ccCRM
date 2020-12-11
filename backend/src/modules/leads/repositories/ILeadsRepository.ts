@@ -6,4 +6,5 @@ export default interface ILeadsRepository {
   save(lead: Lead): Promise<Lead>;
   findById(id: string): Promise<Lead | undefined>;
   findByDOT(dot: string): Promise<Lead | undefined>;
+  findAll(): Promise<Lead[]>;
 }
