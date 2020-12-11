@@ -14,5 +14,6 @@ const leadsController = new LeadsController();
 leadsRouter.post('/', leadsController.create);
 leadsRouter.get('/:id', leadsController.show);
 leadsRouter.get('/', leadsController.index);
+leadsRouter.put('/', leadsController.update);
 
 export default leadsRouter;

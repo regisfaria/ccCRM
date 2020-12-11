@@ -3,11 +3,12 @@ import { container } from 'tsyringe';
 
 import CreateLeadService from '@modules/leads/services/CreateLeadService';
 import ListLeadsService from '@modules/leads/services/ListLeadsService';
+import UpdateLeadService from '@modules/leads/services/UpdateLeadService';
 
 /*
 methods to implement:
 [X]create
-[]update
+[X]update
 [X]show
 [X]index
 []delete
@@ -94,7 +95,7 @@ export default class LeadsController {
     return response.json(lead);
   }
 
-  public async index(request: Request, response: Response): Promise<Response> {
+  public async index(_request: Request, response: Response): Promise<Response> {
     const listLeads = container.resolve(ListLeadsService);
 
     const leads = await listLeads.execute();
@@ -102,10 +103,77 @@ export default class LeadsController {
     return response.json(leads);
   }
 
-  public async update(
-    request: Request,
-    response: Response,
-  ): Promise<Response> {}
+  public async update(request: Request, response: Response): Promise<Response> {
+    const {
+      id,
+      usdot,
+      entityType,
+      operatingStatus,
+      companyName,
+      fullName,
+      primaryAddress,
+      state,
+      zipCode,
+      altAddress,
+      altState,
+      altZipCode,
+      phoneNumber,
+      powerUnits,
+      drivers,
+      mcs150FormDate,
+      operationClassification,
+      carrierOperation,
+      cargoCarried,
+      email,
+      bipdInsuranceRequired,
+      cargoInsuranceRequired,
+      bondInsuranceRequired,
+      insuranceCarrier,
+      policySurety,
+      postedDate,
+      coverageFrom,
+      coverageTo,
+      effectiveDate,
+      cancellationDate,
+    } = request.body;
+
+    const updateLead = container.resolve(UpdateLeadService);
+
+    const lead = await updateLead.execute({
+      id,
+      usdot,
+      entityType,
+      operatingStatus,
+      companyName,
+      fullName,
+      primaryAddress,
+      state,
+      zipCode,
+      altAddress,
+      altState,
+      altZipCode,
+      phoneNumber,
+      powerUnits,
+      drivers,
+      mcs150FormDate,
+      operationClassification,
+      carrierOperation,
+      cargoCarried,
+      email,
+      bipdInsuranceRequired,
+      cargoInsuranceRequired,
+      bondInsuranceRequired,
+      insuranceCarrier,
+      policySurety,
+      postedDate,
+      coverageFrom,
+      coverageTo,
+      effectiveDate,
+      cancellationDate,
+    });
+
+    return response.json(lead);
+  }
 
   public async delete(
     request: Request,
