@@ -36,6 +36,10 @@ export default class LeadsRepository implements ILeadsRepository {
     return this.ormRepository.save(lead);
   }
 
+  public async delete(lead: Lead): Promise<void> {
+    await this.ormRepository.remove(lead);
+  }
+
   public async findAll(): Promise<Lead[]> {
     const leads = await this.ormRepository.find();
 

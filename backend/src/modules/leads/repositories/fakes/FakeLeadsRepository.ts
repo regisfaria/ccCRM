@@ -43,4 +43,12 @@ export default class FakeLeadsRepository implements ILeadsRepository {
 
     return lead;
   }
+
+  public async delete(lead: Lead): Promise<void> {
+    const findIndex = this.leads.findIndex(
+      leadToFind => leadToFind.id === lead.id,
+    );
+
+    this.leads.splice(findIndex, 1);
+  }
 }

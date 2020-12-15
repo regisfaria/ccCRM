@@ -21,6 +21,7 @@ describe('CreateUser', () => {
       name: 'John Doe',
       email: 'johndoe@example.com',
       login: 'johndoe',
+      type: 'admin',
       password: 'somepass',
     });
 
@@ -40,6 +41,7 @@ describe('CreateUser', () => {
       name: 'John Doe',
       email: 'johndoe@example.com',
       login: 'johndoe',
+      type: 'admin',
       password: 'somepass',
     });
 
@@ -48,6 +50,7 @@ describe('CreateUser', () => {
         name: 'Another John Doe',
         email: 'johndoe@example.com',
         login: 'anotherJohnDoe',
+        type: 'admin',
         password: 'somepass',
       }),
     ).rejects.toBeInstanceOf(AppError);
@@ -66,6 +69,7 @@ describe('CreateUser', () => {
       name: 'John Doe',
       email: 'johndoe@example.com',
       login: 'johndoe',
+      type: 'admin',
       password: 'somepass',
     });
 
@@ -74,6 +78,7 @@ describe('CreateUser', () => {
         name: 'Another John Doe',
         email: 'anotherjohndoe@example.com',
         login: 'johndoe',
+        type: 'admin',
         password: 'somepass',
       }),
     ).rejects.toBeInstanceOf(AppError);

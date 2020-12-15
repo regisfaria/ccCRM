@@ -10,6 +10,7 @@ interface Request {
   name: string;
   email: string;
   login: string;
+  type: string;
   password: string;
 }
 
@@ -27,6 +28,7 @@ export default class CreateUserService {
     name,
     email,
     login,
+    type,
     password,
   }: Request): Promise<User> {
     const emailExists = await this.usersRepository.findByEmail(email);
@@ -47,6 +49,7 @@ export default class CreateUserService {
       name,
       email,
       login,
+      type,
       password: hashedPassword,
     });
 

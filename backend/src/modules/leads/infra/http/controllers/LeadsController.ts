@@ -4,15 +4,7 @@ import { container } from 'tsyringe';
 import CreateLeadService from '@modules/leads/services/CreateLeadService';
 import ListLeadsService from '@modules/leads/services/ListLeadsService';
 import UpdateLeadService from '@modules/leads/services/UpdateLeadService';
-
-/*
-methods to implement:
-[X]create
-[X]update
-[X]show
-[X]index
-[]delete
-*/
+import DeleteLeadService from '@modules/leads/services/DeleteLeadService';
 
 export default class LeadsController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -86,7 +78,7 @@ export default class LeadsController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const { id } = request.body;
+    const { id } = request.params;
 
     const listLead = container.resolve(ListLeadsService);
 
@@ -104,8 +96,9 @@ export default class LeadsController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
     const {
-      id,
       usdot,
       entityType,
       operatingStatus,
@@ -175,8 +168,13 @@ export default class LeadsController {
     return response.json(lead);
   }
 
-  public async delete(
-    request: Request,
-    response: Response,
-  ): Promise<Response> {}
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { id } = request.body;
+
+    const deleteLead = container.resolve(DeleteLeadService);
+
+    await deleteLead.execute(id);
+
+    return response.json(204);
+  }
 }
