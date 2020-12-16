@@ -1,40 +1,19 @@
-import styled, { css } from 'styled-components';
-import { linearGradient } from 'polished';
+import styled from 'styled-components';
+import { shade } from 'polished';
 
-interface Props {
-  btnColor?: string;
-}
-
-export const Container = styled.button<Props>`
-  height: 5rem;
-  width: 90%;
-  max-width: 20rem;
-
-  background-image: ${linearGradient({
-    colorStops: ['#0aa278', '#043c2c 100%'],
-    toDirection: 'to bottom',
-  })};
-
-  ${props =>
-    props.btnColor === 'yellow' &&
-    css`
-      background-image: ${linearGradient({
-        colorStops: ['#e9a957', '#d67b00 100%'],
-        toDirection: 'to bottom',
-      })};
-    `}
-
+export const Container = styled.button`
+  background: #ff9000;
+  height: 54px;
   border: 0px;
   border-radius: 10px;
-  color: var(--white);
+  padding: 0 16px;
+  margin-top: 16px;
+  width: 100%;
+  color: #312e38;
   font-weight: 700;
-
-  padding: 0 1.6rem;
-  margin-bottom: 1rem;
-
-  transition: transform 0.2s;
+  transition: background-color 0.2s;
 
   &:hover {
-    transform: scale(1.1);
+    background: ${shade(0.2, '#ff9000')};
   }
 `;
