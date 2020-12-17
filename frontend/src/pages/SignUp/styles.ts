@@ -12,7 +12,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   width: 100%;
-  max-width: 700px;
+  max-width: 40em;
 `;
 
 const appearFromLeft = keyframes`
@@ -36,32 +36,21 @@ export const AnimatedContent = styled.div`
   animation: ${appearFromLeft} 1s;
 
   form {
-    margin: 40px 0;
-    width: 340px;
+    margin: 2em 0 0.8em 0;
+    width: 20em;
+    font-size: 0.98em;
 
     text-align: center;
 
     h1 {
-      margin-bottom: 24px;
-    }
-
-    a {
-      color: #f4ede8;
-      display: block;
-      margin-top: 24px;
-      text-decoration: none;
-      transition: color 0.2s;
-
-      &:hover {
-        color: ${shade(0.2, '#f4ede8')};
-      }
+      margin-bottom: 1em;
     }
   }
 
   > a {
     color: #f4ede8;
     display: block;
-    margin-top: 24px;
+    margin-top: 1em;
     text-decoration: none;
     transition: color 0.2s;
 
@@ -69,7 +58,7 @@ export const AnimatedContent = styled.div`
     align-items: center;
 
     svg {
-      margin-right: 16px;
+      margin-right: 0.8em;
     }
 
     &:hover {
