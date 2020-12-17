@@ -61,7 +61,7 @@ export const Profile = styled.div`
 
     a {
       text-decoration: none;
-      color: #ff9000;
+      color: #ba382f;
 
       &:hover {
         opacity: 0.8;
@@ -86,7 +86,7 @@ export const Schedule = styled.div`
 
   p {
     margin-top: 8px;
-    color: #ff9000;
+    color: #ba382f;
     display: flex;
     align-items: center;
     font-weight: 700;
@@ -100,7 +100,7 @@ export const Schedule = styled.div`
       content: '';
       width: 1px;
       height: 12px;
-      background: #ff9000;
+      background: #ba382f;
       margin: 0 8px;
     }
   }
@@ -131,7 +131,7 @@ export const NextAppointments = styled.div`
       width: 1px;
       left: 0;
       top: 10%;
-      background: #ff9000;
+      background: #ba382f;
     }
 
     img {
@@ -153,7 +153,7 @@ export const NextAppointments = styled.div`
       color: #999591;
 
       svg {
-        color: #ff9000;
+        color: #ba382f;
         margin-right: 8px;
       }
     }
@@ -194,7 +194,7 @@ export const Appointment = styled.div`
     width: 70px;
 
     svg {
-      color: #ff9000;
+      color: #ba382f;
       margin-right: 8px;
     }
   }
@@ -305,7 +305,7 @@ export const Calendar = styled.aside`
   }
 
   .DayPicker-Day--selected {
-    background: #ff9000 !important;
+    background: #ba382f !important;
     border-radius: 0.6rem;
     color: #232129 !important;
   }

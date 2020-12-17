@@ -6,7 +6,7 @@ import React, {
   useCallback,
 } from 'react';
 import { IconBaseProps } from 'react-icons';
-import { FiAlertTriangle } from 'react-icons/fi';
+import { FiAlertCircle } from 'react-icons/fi';
 import { useField } from '@unform/core';
 
 import { Container, Error } from './styles';
@@ -69,7 +69,7 @@ const Input: React.FC<InputProps> = ({
 
       {error && (
         <Error title={error}>
-          <FiAlertTriangle color="#c53030" size={20} />
+          <FiAlertCircle color="#c53030" size={20} />
         </Error>
       )}
     </Container>

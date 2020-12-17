@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from 'react';
-import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
+import { FiLogIn, FiUser, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -8,7 +8,7 @@ import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
 
-import logoImg from '../../assets/allbarber-logo-scaled.png';
+import logoImg from '../../assets/cc_logo.png';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -16,7 +16,7 @@ import Button from '../../components/Button';
 import { Container, Content, AnimationContainer, Background } from './styles';
 
 interface SignInFormData {
-  email: string;
+  login: string;
   password: string;
 }
 
@@ -33,10 +33,10 @@ const SignIn: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          email: Yup.string()
-            .required('E-mail obrigatório')
-            .email('Digite um e-mail válido'),
-          password: Yup.string().required('Digite uma senha válida'),
+          login: Yup.string()
+            .required('Login required')
+            .email('Please, write a valid login'),
+          password: Yup.string().required('Please, write a valid password'),
         });
 
         await schema.validate(data, {
@@ -44,7 +44,7 @@ const SignIn: React.FC = () => {
         });
 
         await signIn({
-          email: data.email,
+          login: data.login,
           password: data.password,
         });
 
@@ -60,8 +60,9 @@ const SignIn: React.FC = () => {
 
         addToast({
           type: 'error',
-          title: 'Erro na autenticação',
-          description: 'Ocorreu um erro ao fazer login, cheque as credenciais',
+          title: 'Authentication error',
+          description:
+            'An error have ocurred when sign-in, please check your credentials.',
         });
       }
     },
@@ -72,28 +73,26 @@ const SignIn: React.FC = () => {
     <Container>
       <Content>
         <AnimationContainer>
-          <img src={logoImg} alt="GoBarber" />
+          <img src={logoImg} alt="CCCRM" />
 
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <h1>Faça o seu Login</h1>
+            <h1>Login</h1>
 
-            <Input name="email" icon={FiMail} placeholder="E-mail" />
+            <Input name="login" icon={FiUser} placeholder="Username" />
 
             <Input
               name="password"
               icon={FiLock}
               type="password"
-              placeholder="Senha"
+              placeholder="Password"
             />
 
-            <Button type="submit">Entrar</Button>
-
-            <Link to="/forgot-password">Esqueci minha senha</Link>
+            <Button type="submit">SignIn</Button>
           </Form>
 
           <Link to="/signup">
             <FiLogIn />
-            Criar uma nova conta
+            Create a new account
           </Link>
         </AnimationContainer>
       </Content>

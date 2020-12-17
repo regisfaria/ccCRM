@@ -150,7 +150,10 @@ const Profile: React.FC = () => {
           onSubmit={handleSubmit}
         >
           <AvatarInput>
-            <img src={user.imageUrl} alt={user.name} />
+            <img
+              src="https://studiosol-a.akamaihd.net/tb/cifraclubnews//wp-content/uploads//2020/05/bob-marley_rei-do-reggae.jpg"
+              alt={user.name}
+            />
 
             <label htmlFor="image">
               <FiCamera />

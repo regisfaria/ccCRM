@@ -72,7 +72,7 @@ export const AvatarInput = styled.div`
   }
 
   label {
-    background-color: #ff9000;
+    background-color: #ba382f;
     position: absolute;
     width: 48px;
     height: 48px;
@@ -99,7 +99,7 @@ export const AvatarInput = styled.div`
     }
 
     &:hover {
-      background: ${(shade(0.2), '#ff9000')};
+      background: ${(shade(0.2), '#ba382f')};
     }
   }
 `;

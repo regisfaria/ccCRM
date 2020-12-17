@@ -11,7 +11,7 @@ import { useToast } from '../../hooks/toast';
 
 import getValidationErrors from '../../utils/getValidationErrors';
 
-import logoImg from '../../assets/allbarber-logo-scaled.png';
+import logoImg from '../../assets/cc_logo.png';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -61,8 +61,8 @@ const SignUp: React.FC = () => {
 
         addToast({
           type: 'success',
-          title: 'Cadastro realizado!',
-          description: 'Agora voce pode logar no AllBarber!',
+          title: 'Registration completed!',
+          description: 'Now you can login!',
         });
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
@@ -75,8 +75,9 @@ const SignUp: React.FC = () => {
 
         addToast({
           type: 'error',
-          title: 'Erro no cadastro',
-          description: 'Ocorreu um erro durante o cadastro, tente novamente.',
+          title: 'Registration Error',
+          description:
+            'An error have occured in registration. Try again, please.',
         });
       }
     },
@@ -89,7 +90,7 @@ const SignUp: React.FC = () => {
 
       <Content>
         <AnimatedContent>
-          <img src={logoImg} alt="GoBarber" />
+          <img src={logoImg} alt="CCCRM" />
 
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça o seu Cadastro</h1>

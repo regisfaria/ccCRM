@@ -19,7 +19,7 @@ import {
   Appointment,
 } from './styles';
 
-import logoImg from '../../assets/allbarber-logo.svg';
+import logoImg from '../../assets/cc_logo.png';
 import { useAuth } from '../../hooks/auth';
 import api from '../../services/api';
 
@@ -34,7 +34,6 @@ interface Appointment {
   formatedHour: string;
   user: {
     name: string;
-    imageUrl: string;
   };
 }
 
@@ -138,11 +137,14 @@ const Dashboard: React.FC = () => {
     <Container>
       <Header>
         <HeaderContent>
-          <img src={logoImg} alt="AllBarber" />
+          <img src={logoImg} alt="CCCRM" />
 
           <Profile>
             <Link to="/profile">
-              <img src={user.imageUrl} alt={user.name} />
+              <img
+                src="https://studiosol-a.akamaihd.net/tb/cifraclubnews//wp-content/uploads//2020/05/bob-marley_rei-do-reggae.jpg"
+                alt="BOB"
+              />
             </Link>
 
             <div>
@@ -176,7 +178,7 @@ const Dashboard: React.FC = () => {
             <NextAppointments key={nextAppointment.id}>
               <div>
                 <img
-                  src={nextAppointment.user.imageUrl}
+                  src="https://studiosol-a.akamaihd.net/tb/cifraclubnews//wp-content/uploads//2020/05/bob-marley_rei-do-reggae.jpg"
                   alt={nextAppointment.user.name}
                 />
                 <strong>{nextAppointment.user.name}</strong>
@@ -205,7 +207,7 @@ const Dashboard: React.FC = () => {
 
                 <div>
                   <img
-                    src={appointment.user.imageUrl}
+                    src="https://studiosol-a.akamaihd.net/tb/cifraclubnews//wp-content/uploads//2020/05/bob-marley_rei-do-reggae.jpg"
                     alt={appointment.user.name}
                   />
                   <strong>{appointment.user.name}</strong>
@@ -229,7 +231,7 @@ const Dashboard: React.FC = () => {
 
                 <div>
                   <img
-                    src={appointment.user.imageUrl}
+                    src="https://studiosol-a.akamaihd.net/tb/cifraclubnews//wp-content/uploads//2020/05/bob-marley_rei-do-reggae.jpg"
                     alt={appointment.user.name}
                   />
                   <strong>{appointment.user.name}</strong>
