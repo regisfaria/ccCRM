@@ -1,5 +1,5 @@
-import React, { useRef, useCallback } from 'react';
-import { FiLock } from 'react-icons/fi';
+import React, { useRef, useCallback, useState } from 'react';
+import { FiAlertTriangle, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -23,6 +23,8 @@ interface ResetPasswordFormData {
 const ResetPassword: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
+  const [onDev, setOnDev] = useState(true);
+
   const { addToast } = useToast();
   const history = useHistory();
 
@@ -34,7 +36,7 @@ const ResetPassword: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          password: Yup.string().required('Digite uma senha válida'),
+          password: Yup.string().required('Write a valid password'),
           passwordConfirmation: Yup.string().oneOf(
             [Yup.ref('password')],
             'Passwords must match',
@@ -82,27 +84,40 @@ const ResetPassword: React.FC = () => {
     <Container>
       <Content>
         <AnimationContainer>
-          <img src={logoImg} alt="GoBarber" />
+          {!onDev ? (
+            <>
+              <img src={logoImg} alt="GoBarber" />
 
-          <Form ref={formRef} onSubmit={handleSubmit}>
-            <h1>Resetar senha</h1>
+              <Form ref={formRef} onSubmit={handleSubmit}>
+                <h1>Resetar senha</h1>
 
-            <Input
-              name="password"
-              icon={FiLock}
-              type="password"
-              placeholder="Nova senha"
-            />
+                <Input
+                  name="password"
+                  icon={FiLock}
+                  type="password"
+                  placeholder="Nova senha"
+                />
 
-            <Input
-              name="passwordConfirmation"
-              icon={FiLock}
-              type="password"
-              placeholder="Confirmar senha"
-            />
+                <Input
+                  name="passwordConfirmation"
+                  icon={FiLock}
+                  type="password"
+                  placeholder="Confirmar senha"
+                />
 
-            <Button type="submit">Resetar</Button>
-          </Form>
+                <Button type="submit">Resetar</Button>
+              </Form>
+            </>
+          ) : (
+            <Form
+              ref={formRef}
+              onSubmit={() => {}}
+              style={{ color: '#ffee00' }}
+            >
+              <FiAlertTriangle size={100} />
+              <p>IN DEVELOPMENT...</p>
+            </Form>
+          )}
         </AnimationContainer>
       </Content>
 
