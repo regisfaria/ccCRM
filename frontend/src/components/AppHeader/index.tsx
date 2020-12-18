@@ -1,31 +1,63 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiUser, FiPower } from 'react-icons/fi';
-import { Container, Header, HeaderContent, Profile } from './styles';
+import { FiMenu, FiPower, FiX } from 'react-icons/fi';
+import { FaUserCircle } from 'react-icons/fa';
+import {
+  Container,
+  Header,
+  HeaderContent,
+  SignOut,
+  Profile,
+  MobileMenu,
+  DesktopMenu,
+} from './styles';
 import { useAuth } from '../../hooks/auth';
+
 import logoImg from '../../assets/cc_logo.png';
 
 const AppHeader: React.FC = () => {
   const { signOut, user } = useAuth();
 
+  const [menuState, setMenuState] = useState(false);
+
+  const MenuClick = useCallback(() => {
+    setMenuState(!menuState);
+  }, [menuState]);
+
   return (
     <Container>
       <Header>
         <HeaderContent>
+          <MobileMenu isActive={menuState}>
+            <div>
+              <button type="button" onClick={MenuClick}>
+                {menuState ? <FiX /> : <FiMenu />}
+              </button>
+              <Link to="/dashboard">HOME</Link>
+              <Link to="/leads">LEADS</Link>
+            </div>
+          </MobileMenu>
+
           <Profile>
             <div>
-              <span>Welcome,</span>
               <Link to="/profile">
-                <FiUser size={20} />
-                &nbsp;
-                <strong>{user.name}</strong>
+                <FaUserCircle />
+                <span>
+                  Welcome,&nbsp;
+                  <strong>{user.name}</strong>
+                </span>
               </Link>
             </div>
           </Profile>
 
-          <button type="button" onClick={signOut}>
+          <DesktopMenu>
+            <Link to="/dashboard">HOME</Link>
+            <Link to="/leads">LEADS</Link>
+          </DesktopMenu>
+
+          <SignOut type="button" onClick={signOut}>
             <FiPower />
-          </button>
+          </SignOut>
           <img src={logoImg} alt="CCCRM" />
         </HeaderContent>
       </Header>

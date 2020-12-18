@@ -1,11 +1,15 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
+
+interface MenuProps {
+  isActive: boolean;
+}
 
 export const Container = styled.div`
   width: 100vw;
 `;
 
 export const Header = styled.header`
-  padding: 2em 3em;
+  padding: 2em;
   background: #28262e;
 `;
 
@@ -14,34 +18,57 @@ export const HeaderContent = styled.div`
   display: flex;
   align-items: center;
 
-  > button {
-    margin-left: auto;
-    margin-right: 3.4em;
-    background: transparent;
-    border: 0;
+  > img {
+    display: none;
+  }
 
+  @media (min-width: 1024px) {
+    display: flex;
+
+    > img {
+      display: inline;
+      align-self: center;
+      height: 70px;
+    }
+  }
+`;
+
+export const SignOut = styled.button`
+  margin-left: auto;
+  margin-right: 3.4em;
+  background: transparent;
+  border: 0;
+
+  svg {
+    transition: color 0.225s;
+
+    color: #999591;
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
     svg {
-      color: #999591;
-      width: 20px;
-      height: 20px;
+      color: #c53030;
     }
   }
 
-  > img {
-    align-self: center;
-    height: 70px;
+  @media (min-width: 1024px) {
+    svg {
+      width: 30px;
+      height: 30px;
+    }
   }
 `;
 
 export const Profile = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 1em;
+  justify-content: center;
+  margin: 0 0.6em;
 
   div {
     display: flex;
-    flex-direction: column;
-    margin-left: 16px;
     line-height: 24px;
 
     span {
@@ -49,11 +76,163 @@ export const Profile = styled.div`
     }
 
     a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
       text-decoration: none;
       color: #ba382f;
 
+      strong {
+        color: #ba382f;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+
       &:hover {
         opacity: 0.8;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    div {
+      a {
+        font-size: 1.4em;
+
+        svg {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
+`;
+
+const dropdown = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+`;
+
+const goUp = keyframes`
+from {
+  opacity: 1;
+  transform: translateY(20px);
+}
+to {
+  opacity: 0;
+  transform: translateY(0);
+}
+after {
+  display:none;
+}
+`;
+
+export const MobileMenu = styled.div<MenuProps>`
+  display: flex;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    z-index: 90;
+    align-items: center;
+    background: #28262e;
+
+    > button {
+      background: transparent;
+      border: 0;
+
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      ${props =>
+        props.isActive
+          ? css`
+              svg {
+                color: #c53030;
+              }
+            `
+          : css`
+              svg {
+                color: #999591;
+              }
+            `}
+    }
+
+    a {
+      display: none;
+      font-family: 'Bebas Neue', cursive;
+      text-decoration: none;
+      color: #f4ede8;
+      border-bottom: 1px hidden #ba382f;
+      margin: 0.8em 0em;
+      font-size: 1.2em;
+
+      transition: color 0.4s;
+
+      &:hover {
+        color: #ba382f;
+        border-bottom: 1px solid #ba382f;
+      }
+    }
+  }
+
+  ${props =>
+    props.isActive
+      ? css`
+          div {
+            a {
+              animation: ${dropdown} 1s;
+              display: inline;
+            }
+          }
+        `
+      : css`
+          div {
+            a {
+              animation: ${goUp} 1s;
+            }
+          }
+        `}
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+`;
+
+export const DesktopMenu = styled.div`
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: flex;
+
+    a {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2em;
+      line-height: 24px;
+      text-decoration: none;
+      color: #f4ede8;
+      border-bottom: 1px hidden #ba382f;
+
+      margin: 0 1.4em;
+      padding-top: 1.2em;
+
+      transition: color 0.4s;
+
+      &:hover {
+        color: #ba382f;
+        border-bottom: 1px solid #ba382f;
       }
     }
   }
