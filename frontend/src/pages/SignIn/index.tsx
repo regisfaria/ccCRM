@@ -33,9 +33,7 @@ const SignIn: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          login: Yup.string()
-            .required('Login required')
-            .email('Please, write a valid login'),
+          login: Yup.string().required('Login required'),
           password: Yup.string().required('Please, write a valid password'),
         });
 
@@ -62,7 +60,8 @@ const SignIn: React.FC = () => {
           type: 'error',
           title: 'Authentication error',
           description:
-            'An error have ocurred when sign-in, please check your credentials.',
+            // 'An error have ocurred when sign-in, please check your credentials.',
+            `error: ${error}`,
         });
       }
     },
