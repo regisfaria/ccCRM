@@ -123,20 +123,6 @@ const dropdown = keyframes`
   }
 `;
 
-const goUp = keyframes`
-from {
-  opacity: 1;
-  transform: translateY(20px);
-}
-to {
-  opacity: 0;
-  transform: translateY(0);
-}
-after {
-  display:none;
-}
-`;
-
 export const MobileMenu = styled.div<MenuProps>`
   display: flex;
 
@@ -189,22 +175,15 @@ export const MobileMenu = styled.div<MenuProps>`
   }
 
   ${props =>
-    props.isActive
-      ? css`
-          div {
-            a {
-              animation: ${dropdown} 1s;
-              display: inline;
-            }
-          }
-        `
-      : css`
-          div {
-            a {
-              animation: ${goUp} 1s;
-            }
-          }
-        `}
+    props.isActive &&
+    css`
+      div {
+        a {
+          animation: ${dropdown} 1s;
+          display: inline;
+        }
+      }
+    `}
 
   @media (min-width: 1024px) {
     display: none;
