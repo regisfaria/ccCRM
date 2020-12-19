@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiPower, FiX } from 'react-icons/fi';
 import { FaUserCircle } from 'react-icons/fa';
@@ -9,6 +9,7 @@ import {
   SignOut,
   Profile,
   MobileMenu,
+  MobilePageHeader,
   DesktopMenu,
 } from './styles';
 import { useAuth } from '../../hooks/auth';
@@ -18,7 +19,16 @@ import logoImg from '../../assets/cc_logo.png';
 const AppHeader: React.FC = () => {
   const { signOut, user } = useAuth();
 
+  const [pageName, setPageName] = useState<string | undefined>('');
   const [menuState, setMenuState] = useState(false);
+
+  useEffect(() => {
+    const url = window.location.href;
+
+    const currentPageName = url.split('/').slice(-1).pop();
+
+    setPageName(currentPageName);
+  }, []);
 
   const MenuClick = useCallback(() => {
     setMenuState(!menuState);
@@ -33,7 +43,7 @@ const AppHeader: React.FC = () => {
               <button type="button" onClick={MenuClick}>
                 {menuState ? <FiX /> : <FiMenu />}
               </button>
-              <Link to="/dashboard">HOME</Link>
+              <Link to="/home">HOME</Link>
               <Link to="/leads">LEADS</Link>
             </div>
           </MobileMenu>
@@ -50,9 +60,15 @@ const AppHeader: React.FC = () => {
             </div>
           </Profile>
 
-          <DesktopMenu>
-            <Link to="/dashboard">HOME</Link>
-            <Link to="/leads">LEADS</Link>
+          <MobilePageHeader>{pageName?.toUpperCase()}</MobilePageHeader>
+
+          <DesktopMenu currentPage={pageName}>
+            <Link id="home" to="/home">
+              HOME
+            </Link>
+            <Link id="leads" to="/leads">
+              LEADS
+            </Link>
           </DesktopMenu>
 
           <SignOut type="button" onClick={signOut}>

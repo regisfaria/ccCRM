@@ -4,6 +4,10 @@ interface MenuProps {
   isActive: boolean;
 }
 
+interface DesktopMenuProps {
+  currentPage: string | undefined;
+}
+
 export const Container = styled.div`
   width: 100vw;
 `;
@@ -35,7 +39,8 @@ export const HeaderContent = styled.div`
 
 export const SignOut = styled.button`
   margin-left: auto;
-  margin-right: 3.4em;
+  margin-right: 2em;
+  margin-top: 1em;
   background: transparent;
   border: 0;
 
@@ -65,7 +70,7 @@ export const Profile = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 0.6em;
+  margin: 0 0.6em 0 1em;
 
   div {
     display: flex;
@@ -138,6 +143,8 @@ export const MobileMenu = styled.div<MenuProps>`
       border: 0;
 
       svg {
+        margin-top: 1.2em;
+        margin-right: 0.4em;
         width: 30px;
         height: 30px;
       }
@@ -190,7 +197,22 @@ export const MobileMenu = styled.div<MenuProps>`
   }
 `;
 
-export const DesktopMenu = styled.div`
+export const MobilePageHeader = styled.strong`
+  display: inline;
+
+  font-size: 1em;
+  color: #bab9b8;
+  border-bottom: 1px solid #ba382f;
+
+  margin-left: 1em;
+  margin-top: 1.2em;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+`;
+
+export const DesktopMenu = styled.div<DesktopMenuProps>`
   display: none;
 
   @media (min-width: 1024px) {
@@ -214,5 +236,35 @@ export const DesktopMenu = styled.div`
         border-bottom: 1px solid #ba382f;
       }
     }
+
+    ${props =>
+      props.currentPage &&
+      props.currentPage === 'leads' &&
+      css`
+        #leads {
+          color: #bab9b8;
+          border-bottom: 1px solid #ba382f;
+
+          &:hover {
+            color: #ba382f;
+            border-bottom: 1px solid #ba382f;
+          }
+        }
+      `}
+
+    ${props =>
+      props.currentPage &&
+      props.currentPage === 'home' &&
+      css`
+        #home {
+          color: #bab9b8;
+          border-bottom: 1px solid #ba382f;
+
+          &:hover {
+            color: #ba382f;
+            border-bottom: 1px solid #ba382f;
+          }
+        }
+      `}
   }
 `;
