@@ -20,10 +20,8 @@ interface ResetPasswordFormData {
   passwordConfirmation: string;
 }
 
-const ResetPassword: React.FC = () => {
+const Recover: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-
-  const [onDev, setOnDev] = useState(true);
 
   const { addToast } = useToast();
   const history = useHistory();
@@ -84,40 +82,27 @@ const ResetPassword: React.FC = () => {
     <Container>
       <Content>
         <AnimationContainer>
-          {!onDev ? (
-            <>
-              <img src={logoImg} alt="GoBarber" />
+          <img src={logoImg} alt="GoBarber" />
 
-              <Form ref={formRef} onSubmit={handleSubmit}>
-                <h1>Resetar senha</h1>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>Resetar senha</h1>
 
-                <Input
-                  name="password"
-                  icon={FiLock}
-                  type="password"
-                  placeholder="Nova senha"
-                />
+            <Input
+              name="password"
+              icon={FiLock}
+              type="password"
+              placeholder="Nova senha"
+            />
 
-                <Input
-                  name="passwordConfirmation"
-                  icon={FiLock}
-                  type="password"
-                  placeholder="Confirmar senha"
-                />
+            <Input
+              name="passwordConfirmation"
+              icon={FiLock}
+              type="password"
+              placeholder="Confirmar senha"
+            />
 
-                <Button type="submit">Resetar</Button>
-              </Form>
-            </>
-          ) : (
-            <Form
-              ref={formRef}
-              onSubmit={() => {}}
-              style={{ color: '#ffee00' }}
-            >
-              <FiAlertTriangle size={100} />
-              <p>IN DEVELOPMENT...</p>
-            </Form>
-          )}
+            <Button type="submit">Resetar</Button>
+          </Form>
         </AnimationContainer>
       </Content>
 
@@ -126,4 +111,4 @@ const ResetPassword: React.FC = () => {
   );
 };
 
-export default ResetPassword;
+export default Recover;
