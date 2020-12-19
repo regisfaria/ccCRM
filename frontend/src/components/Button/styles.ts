@@ -1,7 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { shade } from 'polished';
 
-export const Container = styled.button`
+interface ButtonProps {
+  color?: string;
+}
+
+export const Container = styled.button<ButtonProps>`
   background: #ba382f;
   height: 3.4em;
   border: 0em;
@@ -17,4 +21,11 @@ export const Container = styled.button`
   &:hover {
     background: ${shade(0.2, '#ba382f')};
   }
+
+  ${props =>
+    props.color &&
+    props.color === 'green' &&
+    css`
+      background: #39a841;
+    `}
 `;

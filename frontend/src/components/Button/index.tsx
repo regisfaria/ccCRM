@@ -4,10 +4,16 @@ import { Container } from './styles';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   loading?: boolean;
+  color?: string;
 };
 
-const Button: React.FC<ButtonProps> = ({ children, loading, ...props }) => (
-  <Container type="button" {...props}>
+const Button: React.FC<ButtonProps> = ({
+  children,
+  loading,
+  color,
+  ...props
+}) => (
+  <Container type="button" color={color} {...props}>
     {loading && 'Carregando...'}
     {!loading && children}
   </Container>
