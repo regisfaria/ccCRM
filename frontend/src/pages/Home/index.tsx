@@ -5,7 +5,7 @@ import AppHeader from '../../components/AppHeader';
 
 import { Container, Content } from './styles';
 
-const Dashboard: React.FC = () => {
+const Home: React.FC = () => {
   return (
     <Container>
       <AppHeader />
@@ -25,4 +25,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default Home;
