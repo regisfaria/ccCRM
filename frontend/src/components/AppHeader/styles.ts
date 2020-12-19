@@ -39,7 +39,6 @@ export const HeaderContent = styled.div`
 
 export const SignOut = styled.button`
   margin-left: auto;
-  margin-right: 2em;
   margin-top: 1em;
   background: transparent;
   border: 0;
@@ -59,6 +58,8 @@ export const SignOut = styled.button`
   }
 
   @media (min-width: 1024px) {
+    margin-right: 2em;
+
     svg {
       width: 30px;
       height: 30px;

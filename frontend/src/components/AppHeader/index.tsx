@@ -45,6 +45,7 @@ const AppHeader: React.FC = () => {
               </button>
               <Link to="/home">HOME</Link>
               <Link to="/leads">LEADS</Link>
+              {user.type === 'admin' && <Link to="/recover">RECOVER</Link>}
             </div>
           </MobileMenu>
 
@@ -69,6 +70,11 @@ const AppHeader: React.FC = () => {
             <Link id="leads" to="/leads">
               LEADS
             </Link>
+            {user.type === 'admin' && (
+              <Link id="recover" to="/recover">
+                RECOVER
+              </Link>
+            )}
           </DesktopMenu>
 
           <SignOut type="button" onClick={signOut}>
