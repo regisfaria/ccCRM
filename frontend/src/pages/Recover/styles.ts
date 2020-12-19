@@ -1,18 +1,19 @@
 import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
-import signInBackgroundImg from '../../assets/sign-in-background.jpg';
-
 export const Container = styled.div`
   height: 100vh;
 
   display: flex;
-  align-items: stretch;
+  flex-direction: column;
 `;
 
 export const Content = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 100%;
-  max-width: 700px;
 `;
 
 const appearFromRight = keyframes`
@@ -29,8 +30,9 @@ const appearFromRight = keyframes`
 export const AnimationContainer = styled.div`
   display: flex;
   flex-direction: column;
+
   align-items: center;
-  place-content: center;
+  justify-content: center;
 
   animation: ${appearFromRight} 1s;
 
@@ -77,19 +79,37 @@ export const AnimationContainer = styled.div`
   }
 `;
 
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
+export const Information = styled.section`
+  display: flex;
 
-export const Background = styled.div`
-  flex: 1;
-  background: url(${signInBackgroundImg}) no-repeat center;
-  background-size: cover;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-  animation: ${fadeIn} 2s;
+  padding: 1em;
+  margin: 1em 1em 0 1em;
+
+  width: 90%;
+
+  background: #28262e;
+  border: 1px solid #f4ede8;
+
+  p {
+    margin: 1em 0 0 0;
+    padding: 0;
+
+    font-size: 1.2em;
+    color: #f4ede8;
+  }
+
+  span {
+    margin-top: 0.4em;
+    color: #9c9c9c;
+    font-style: italic;
+  }
+
+  strong {
+    color: #ba382f;
+    font-style: bold;
+  }
 `;
