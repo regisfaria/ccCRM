@@ -227,7 +227,7 @@ export const DesktopMenu = styled.div<DesktopMenuProps>`
       color: #f4ede8;
       border-bottom: 1px hidden #ba382f;
 
-      margin: 0 1.4em;
+      margin: 0 1em;
       padding-top: 1.2em;
 
       transition: color 0.4s;
@@ -253,19 +253,34 @@ export const DesktopMenu = styled.div<DesktopMenuProps>`
         }
       `}
 
-    ${props =>
-      props.currentPage &&
-      props.currentPage === 'home' &&
-      css`
-        #home {
-          color: #bab9b8;
-          border-bottom: 1px solid #ba382f;
-
-          &:hover {
-            color: #ba382f;
+      ${props =>
+        props.currentPage &&
+        props.currentPage === 'home' &&
+        css`
+          #home {
+            color: #bab9b8;
             border-bottom: 1px solid #ba382f;
+
+            &:hover {
+              color: #ba382f;
+              border-bottom: 1px solid #ba382f;
+            }
           }
-        }
-      `}
+        `}
+
+      ${props =>
+        props.currentPage &&
+        props.currentPage === 'recover' &&
+        css`
+          #recover {
+            color: #bab9b8;
+            border-bottom: 1px solid #ba382f;
+
+            &:hover {
+              color: #ba382f;
+              border-bottom: 1px solid #ba382f;
+            }
+          }
+        `}
   }
 `;
