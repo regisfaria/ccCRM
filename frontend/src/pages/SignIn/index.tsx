@@ -46,7 +46,7 @@ const SignIn: React.FC = () => {
           password: data.password,
         });
 
-        history.push('/dashboard');
+        history.push('/home');
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErrors(error);
@@ -60,8 +60,7 @@ const SignIn: React.FC = () => {
           type: 'error',
           title: 'Authentication error',
           description:
-            // 'An error have ocurred when sign-in, please check your credentials.',
-            `error: ${error}`,
+            'An error have ocurred when sign-in, please check your credentials.',
         });
       }
     },
