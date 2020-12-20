@@ -10,7 +10,7 @@ interface Request {
   name: string;
   email: string;
   login: string;
-  type: string;
+  type?: string;
   password: string;
 }
 
@@ -28,7 +28,7 @@ export default class CreateUserService {
     name,
     email,
     login,
-    type,
+    type = 'user',
     password,
   }: Request): Promise<User> {
     const emailExists = await this.usersRepository.findByEmail(email);
