@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-
-import { DataGrid } from '@material-ui/data-grid';
+import { useHistory } from 'react-router-dom';
+import { CellParams, DataGrid } from '@material-ui/data-grid';
+import { FiExternalLink } from 'react-icons/fi';
 import AppHeader from '../../components/AppHeader';
 import NoRowsOverlay from './components/NoRowsOverlay';
-
+import { useToast } from '../../hooks/toast';
 import api from '../../services/api';
 
-import { Container, Content } from './styles';
+import { Container, Content, ViewMoreButton } from './styles';
 
 interface Lead {
   id: string;
@@ -42,18 +43,39 @@ interface Lead {
 }
 
 // https://material-ui.com/pt/api/data-grid/
+// https://material-ui.com/pt/components/data-grid/rendering/
 const Leads: React.FC = () => {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { addToast } = useToast();
+
+  const history = useHistory();
 
   useEffect(() => {
     api.get('/leads').then(response => {
       setLeads(response.data);
       setIsLoading(false);
     });
-  }, []);
+  }, [history]);
 
   const columns = [
+    {
+      field: 'view',
+      headerName: 'View',
+      width: 68,
+      renderCell: (params: CellParams) => {
+        return (
+          <ViewMoreButton
+            type="button"
+            onClick={() => {
+              history.push(`/lead/${params.row.id}`);
+            }}
+          >
+            <FiExternalLink />
+          </ViewMoreButton>
+        );
+      },
+    },
     { field: 'usdot', headerName: 'USDOT', width: 200 },
     { field: 'entityType', headerName: 'Entity Type', width: 200 },
     { field: 'operatingStatus', headerName: 'Operating Status', width: 200 },
@@ -107,12 +129,23 @@ const Leads: React.FC = () => {
           }}
           rows={leads}
           columns={columns}
-          checkboxSelection
-          pageSize={15}
-          autoHeight
+          pageSize={10}
+          density="compact"
+          headerHeight={40}
+          scrollbarSize={7}
           loading={isLoading}
-          // Below is to render "/lead/:id"
-          // onRowClick={() => {}}
+          disableSelectionOnClick
+          onCellClick={(params: CellParams) => {
+            if (params.field === 'view') {
+              return;
+            }
+            navigator.clipboard.writeText(String(params.value));
+            console.log(params);
+            addToast({
+              type: 'info',
+              title: `Value of ${params.colDef.headerName} copied to clipboard`,
+            });
+          }}
         />
       </Content>
     </Container>
