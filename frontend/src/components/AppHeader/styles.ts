@@ -13,7 +13,7 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.header`
-  padding: 2em;
+  padding: 1em;
   background: #28262e;
 `;
 
@@ -39,7 +39,6 @@ export const HeaderContent = styled.div`
 
 export const SignOut = styled.button`
   margin-left: auto;
-  margin-top: 1em;
   background: transparent;
   border: 0;
 
@@ -144,7 +143,6 @@ export const MobileMenu = styled.div<MenuProps>`
       border: 0;
 
       svg {
-        margin-top: 1.2em;
         margin-right: 0.4em;
         width: 30px;
         height: 30px;
@@ -206,7 +204,6 @@ export const MobilePageHeader = styled.strong`
   border-bottom: 1px solid #ba382f;
 
   margin-left: 1em;
-  margin-top: 1.2em;
 
   @media (min-width: 1024px) {
     display: none;
@@ -228,7 +225,6 @@ export const DesktopMenu = styled.div<DesktopMenuProps>`
       border-bottom: 1px hidden #ba382f;
 
       margin: 0 1em;
-      padding-top: 1.2em;
 
       transition: color 0.4s;
 

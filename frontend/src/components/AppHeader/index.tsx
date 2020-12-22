@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiPower, FiX } from 'react-icons/fi';
 import { FaUserCircle } from 'react-icons/fa';
+import { isUuid } from 'uuidv4';
 import {
   Container,
   Header,
@@ -25,7 +26,11 @@ const AppHeader: React.FC = () => {
   useEffect(() => {
     const url = window.location.href;
 
-    const currentPageName = url.split('/').slice(-1).pop();
+    let currentPageName = url.split('/').slice(-1).pop();
+
+    if (isUuid(currentPageName || 'NOT UUID')) {
+      currentPageName = 'LEAD';
+    }
 
     setPageName(currentPageName);
   }, []);
@@ -52,7 +57,6 @@ const AppHeader: React.FC = () => {
           <Profile>
             <div>
               <Link to="/profile">
-                <FaUserCircle />
                 <span>
                   Welcome,&nbsp;
                   <strong>{user.name}</strong>
