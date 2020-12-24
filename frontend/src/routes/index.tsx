@@ -9,6 +9,7 @@ import Home from '../pages/Home';
 import Recover from '../pages/Recover';
 import Profile from '../pages/Profile';
 import Leads from '../pages/Leads';
+import Lead from '../pages/Lead';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -19,6 +20,7 @@ const Routes: React.FC = () => (
     <Route path="/profile" component={Profile} isPrivate />
     <Route path="/home" component={Home} isPrivate />
     <Route path="/leads" component={Leads} isPrivate />
+    <Route path="/lead/:id" component={Lead} isPrivate />
   </Switch>
 );
 
