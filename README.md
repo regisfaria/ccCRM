@@ -1,9 +1,7 @@
 # Complete Compliance Caller
 
-## Some infos
+## Overview
+This was a CRM Frontend & backend project I've done. It's discontinued, since I've moved front & back into its own repositories, so the code here is outdated.
 
-- Inside "components" we can find some components used in another projects, that may spare some time writting CSS, edit freely;
-- Inside "hooks" we can find providers to use on our React app and instructions on where to use/import;
-- Trello link: https://trello.com/b/QLWmXgVt/cc-caller
 
-# ccCRM
+Anyways, There's a lot of things coded here, so I will leave it open.
